@@ -67,6 +67,7 @@ nav {
 .nav-list li {
   display: inline-block;
 }
+
 .nav-list li::after {
   content: " | ";
   margin: 0 4px;
@@ -90,4 +91,40 @@ nav {
 h1 {
   margin-bottom: 20px;
   border-bottom: 1px solid #555657;
+}
+
+button[type="submit"],
+button[type="button"] {
+  background-color: #797a79;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0px 1px 0px 1px;
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+  background-color: #4f504f;
+}
+
+button[type="submit"] {
+  margin-top: 20px;
+}
+
+button[type="button"] {
+  margin-top: 20px;
+  background-color: #797a79;
+}
+
+button[type="submit"]:disabled,
+button[type="button"]:disabled {
+  background-color: #bfbfbf;
+  color: #ffffff;
+  cursor: not-allowed;
 }
