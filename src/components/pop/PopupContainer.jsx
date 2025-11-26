@@ -8,7 +8,7 @@ export default function PopupContainer(props) {
   const ctx = useContext(PopContext);
   const [Content, setContent] = useState(null);
   if (!ctx || typeof ctx.setPop !== "function") {
-    throw new Error("Error:", ctx);
+    throw new Error("Error:", 'setPop function not found in PopContext');
   }
   const close = () => ctx.setPop(false);
 
@@ -44,7 +44,7 @@ export default function PopupContainer(props) {
   return (
     <div className="popup">
       <div ref={divRef} className="popup-inner">
-        {Content ? <Content /> : null}
+        {Content && <Content />}
         <button type="button" onClick={close}>
           Close
         </button>

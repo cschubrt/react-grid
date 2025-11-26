@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PopContext from "./pop/PopContext";
+import PopContext from "./PopContext";
 
 export const PopProvider = PopContext;
 
@@ -11,7 +11,7 @@ export const ContextCreate = (content) => {
   const contextValue = {
     pop,
     setPop,
-    mod: `./content/${content}.jsx`,
+    mod: "./content/" + content + ".jsx",
     open: () => setPop(true),
     close: () => setPop(false),
     toggle: togglePop,
