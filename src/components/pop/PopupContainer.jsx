@@ -44,7 +44,7 @@ export default function PopupContainer(props) {
   return (
     <div className="popup">
       <div ref={divRef} className="popup-inner">
-        {Content && <Content />}
+        {Content ? <Content /> : null}
         <button type="button" onClick={close}>
           Close
         </button>
