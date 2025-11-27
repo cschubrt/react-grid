@@ -12,6 +12,7 @@ export default function PopupContainer(props) {
   }
   const close = () => ctx.setPop(false);
 
+  // Handle click outside of popup
   const handleBoundary = (e) => {
     if (divRef.current && !divRef.current.contains(e.target)) {
       close();

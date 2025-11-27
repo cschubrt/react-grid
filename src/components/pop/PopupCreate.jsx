@@ -8,6 +8,7 @@ export const ContextCreate = (content) => {
   const togglePop = () => setPop((p) => !p);
   const [pop, setPop] = useState(false);
 
+  // Context value
   const contextValue = {
     pop,
     setPop,

@@ -89,8 +89,14 @@ nav {
 }
 
 h1 {
-  margin-bottom: 20px;
-  border-bottom: 1px solid #555657;
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+
+h2 {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 1.5rem;
 }
 
 button[type="submit"],
@@ -127,4 +133,33 @@ button[type="button"]:disabled {
   background-color: #bfbfbf;
   color: #ffffff;
   cursor: not-allowed;
+}
+
+.api-data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+  gap: 1px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.api-data div {
+  padding: 10px;
+  text-align: left;
+}
+
+.api-data div:first-child {
+  padding: 10px;
+  width: 150px;
+  text-align: left;
+  font-weight: bold
+}
+
+.api-data div:first-child::after {
+  content: ":";
+  margin-left: 4px;
 }
