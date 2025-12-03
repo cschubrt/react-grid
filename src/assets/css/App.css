@@ -94,9 +94,17 @@ h1 {
 }
 
 h2 {
+  text-align: left;
   margin-bottom: 10px;
   margin-top: 10px;
   font-size: 1.5rem;
+}
+
+h3 {
+  text-align: left;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 1rem;
 }
 
 button[type="submit"],
@@ -137,12 +145,11 @@ button[type="button"]:disabled {
 
 .api-data {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 5px;
-  gap: 1px;
-  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 1px;
+  width: 80%;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
@@ -152,14 +159,16 @@ button[type="button"]:disabled {
   text-align: left;
 }
 
-.api-data div:first-child {
-  padding: 10px;
-  width: 150px;
-  text-align: left;
-  font-weight: bold
+.api-data div:first-letter {
+  text-transform: capitalize;
 }
 
-.api-data div:first-child::after {
+.api-data div > span {
+  display:inline;
+  font-weight: bold;
+}
+
+.api-data div > span::after {
   content: ":";
   margin-left: 4px;
 }

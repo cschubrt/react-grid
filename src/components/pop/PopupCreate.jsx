@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PopContext from "./PopContext";
 
-export const PopProvider = PopContext;
+//export const PopProvider = PopContext;
 
 export const ContextCreate = (content) => {
   // Toggle popup

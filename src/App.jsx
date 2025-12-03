@@ -1,20 +1,21 @@
 import { useState, useEffect } from "react";
 import Popup from "./components/pop/PopupContainer";
-import { ContextCreate, PopProvider } from "./components/pop/PopupCreate";
+import { usePopCtx } from "./components/pop/PopContext";
+import Navigation from "./components/navigation.jsx";
+import Logo from "./assets/react.svg";
 import "./assets/css/App.css";
 
 function App() {
-  const [content, setContent] = useState();
+  const { content, setContent, open, toggle, pop, mod } = usePopCtx();
   const [posts, setPosts] = useState();
-  const ctx = ContextCreate(content);
   // Stock Market API
-  const api = "http://api.marketstack.com/v2/eod?access_key=3503fba5dba20918b6c292eed11ecb0f&symbols=AAPL&limit=5";
+  const api = "https://jsonplaceholder.typicode.com/posts?_limit=10";
 
   // Handle Popup Click
   const handleClick = (e) => {
     e.preventDefault();
     setContent(e.target.dataset.content);
-    ctx.open();
+    open();
   };
 
   // Fetch API Data
@@ -32,14 +33,12 @@ function App() {
   // display API Data
   const showPosts = (post) => {
     if (post) {
-      return post.data.map((item, i) => (
+      return post.map((item, i) => (
         <div key={i} className="api-data">
-          <div>{item.name}</div>
-          <div>{new Date(item.date).toLocaleString()}</div>
-          <div>${item.open}</div>
-          <div>${item.high}</div>
-          <div>${item.low}</div>
-          <div>${item.close}</div>
+          <div>
+            <span>{item.id}</span> {item.title}
+          </div>
+          <div>{item.body}</div>
         </div>
       ));
     }
@@ -47,43 +46,25 @@ function App() {
 
   return (
     <>
-      <PopProvider.Provider value={ctx}>
-        {ctx.pop ? <Popup toggle={ctx.toggle} mod={ctx.mod} /> : null}
-        <div id="container">
-          <header> Header </header>
-          <nav>
-            <ul className="nav-list">
-              <li className="nav-item">
-                <a href="" className="nav-link">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="" className="nav-link">
-                  About
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="" className="nav-link">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <main>
-            <h1>Current Popup Content: {content}</h1>
-            <button type="button" onClick={handleClick} data-content="default">
-              Show Default
-            </button>
-            <button type="button" onClick={handleClick} data-content="copy">
-              Show Copy
-            </button>
-            <h2>API Data:</h2>
-            {showPosts(posts)}
-          </main>
-          <footer className="footer"> Footer </footer>
-        </div>
-      </PopProvider.Provider>
+      {pop ? <Popup toggle={toggle} mod={mod} /> : null}
+      <div id="container">
+        <header>
+          <img src={Logo} className="app-logo" alt="logo" />
+        </header>
+        <Navigation onClick={handleClick} />
+        <main>
+          <h1>Current Popup Content: {content}</h1>
+          <button type="button" onClick={handleClick} data-content="default">
+            Show Default
+          </button>
+          <button type="button" onClick={handleClick} data-content="copy">
+            Show Copy
+          </button>
+          <h3>API Stock Data:</h3>
+          {posts ? showPosts(posts) : "Loading..."}
+        </main>
+        <footer className="footer"> Footer </footer>
+      </div>
     </>
   );
 }
